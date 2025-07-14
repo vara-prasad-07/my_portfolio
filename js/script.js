@@ -214,48 +214,51 @@ loadClient();
 // Unified chat handler function
 async function handleChatSubmit(e) {
     // Determine if we're in desktop or mobile mode
-    const isDesktop = (e.type === "click" && e.target.id === "desktop-send-btn") || (e.type === "keydown" && e.key === "Enter" && e.target.id === "desktop-chat-input");
+    const isDesktop = (e.type === "click" && e.target.id === "desktop-send-btn") || 
+                     (e.type === "keydown" && e.key === "Enter" && e.target.id === "desktop-chat-input");
     const inputId = isDesktop ? 'desktop-chat-input' : 'mobile-chat-input';
     const containerId = isDesktop ? 'desktop-msg-container' : 'mobile-msg-container';
     const chatBoxId = isDesktop ? 'desktop-chat-box' : 'mobile-chat-box';
     
     // Get elements
     const input = document.getElementById(inputId);
-    const inputValue = input.value;
+    const inputValue = input?.value?.trim() || '';
     const chatBox = document.getElementById(chatBoxId);
     const msgContainer = document.getElementById(containerId);
     
-    if (inputValue.trim() !== '') {
-        // Clear input and hide elements
-        input.value = '';
-        const parent = chatBox.closest('.chat-content');
-        parent.querySelector('.sparkle-icon').style.display = 'none';
-        parent.querySelector('.suggestions').style.display = 'none';
-        parent.querySelector('.main-prompt').style.display = 'none';
+    // Check if input is empty before proceeding
+  
 
-        // Add user message
-        let userMsg = document.createElement("div");
-        userMsg.classList.add("msg-container");
-        userMsg.innerHTML = inputValue;
-        msgContainer.appendChild(userMsg);
+    // Clear input and hide elements
+    input.value = '';
+    const parent = chatBox.closest('.chat-content');
+    parent.querySelector('.sparkle-icon').style.display = 'none';
+    parent.querySelector('.suggestions').style.display = 'none';
+    parent.querySelector('.main-prompt').style.display = 'none';
 
-        // Handle bot response
-        try {
-            setTimeout(async () => {
-                let responsecontent = await client.predict("/predict", [inputValue]);
-                let botResponse = document.createElement("div");
-                botResponse.classList.add("msg_container_response");
-                botResponse.innerHTML = responsecontent.data[0];
-                msgContainer.appendChild(botResponse);
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 1000);
-        } catch (error) {
-            alert("Error fetching response: " + error.message);
-        }
+    // Add user message
+    let userMsg = document.createElement("div");
+    userMsg.classList.add("msg-container");
+    userMsg.innerHTML = inputValue;
+    msgContainer.appendChild(userMsg);
 
-        // Scroll to bottom
-        chatBox.scrollTop = chatBox.scrollHeight;
-    } 
+    // Handle bot response
+    try {
+        setTimeout(async () => {
+            let responsecontent = await client.predict("/predict", [inputValue]);
+            let botResponse = document.createElement("div");
+            botResponse.classList.add("msg_container_response");
+            botResponse.innerHTML = responsecontent.data[0];
+            msgContainer.appendChild(botResponse);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Error fetching response: " + error.message);
+    }
+
+    // Scroll to bottom
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 // Handle Enter key press
