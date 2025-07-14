@@ -227,7 +227,10 @@ async function handleChatSubmit(e) {
     const msgContainer = document.getElementById(containerId);
     
     // Check if input is empty before proceeding
-  
+    if (!inputValue) {
+        alert("Please enter a message before asking.");
+        return; // Exit the function if no input
+    }
 
     // Clear input and hide elements
     input.value = '';
