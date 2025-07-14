@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Facebook Open Graph -->
+    <meta property="og:type" content="website" />
+    
+    <meta property="og:title" content="vara prasad Personal Website" />
+    <meta
+      property="og:description"
+      content="vara prasad is a self-taught Frontend/UI Engineer, Visual Designer and AI/>ML Enthusiast passionate about Open Source, Accessibility, Inclusive Design and Renewable Energy."
+    />
+    
+
+    <!-- Twitter Meta Tags  -->
+  
+
+    <!-- Favicons -->
+    <link rel="icon" sizes="16x16" href="./images/favicon/favicon-16x16.png" />
+    <link rel="icon" sizes="32x32" href="./images/favicon/favicon-32x32.png" />
+    <link rel="icon" sizes="48x48" href="./images/favicon/favicon-48x48.png" />
+    <link
+      rel="icon"
+      sizes="152x152"
+      href="./images/favicon/favicon-152x152.png"
+    />
+    <link
+      rel="icon"
+      sizes="192x192"
+      href="./images/favicon/favicon-192x192.png"
+    />
+    <!-- Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Vara Prasad portfolio</title>
+    <!-- Add these to your HTML file's head or before closing body tag -->
+    
+  </head>
+  <body>
+    <!-- <div class="preloader">
+   
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+          <a href="#hero">
+            <img
+              class="dark-logo"
+              src="./assets/images/circle icon.png"
+              
+            />
+            <img
+              class="light-logo hide"
+              src="./assets/images/circle icon.png"
+              
+            />
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#skills">SKILLS</a></li>
+          <li><a href="#project">PROJECTS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+          <li>
+            <button class="resume-btn">
+              <a
+                id="resume"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://drive.google.com/file/d/1W50oNleOxKHQqPlvVF0PSqW6v5wgpFQl/view?usp=sharing"
+                >Resume</a
+              >
+            </button>
+          </li>
+
+          <!-- Dark Mode Switch -->
+          <div class="theme-switch">
+            <input type="checkbox" id="toggle-switch" />
+            <label class="theme-icons" for="toggle-switch">
+              <img
+                class="darken"
+                src="./assets/images/icons/moon.svg"
+                alt="dark mode"
+              />
+              <img
+                class="brighten hide"
+                src="./assets/images/icons/sun.svg"
+                alt="light mode"
+              />
+            </label>
+          </div>
+        </ul>
+        <!-- Mobile Hamburger Menu -->
+        <div class="hamburger-menu">
+          <div class="bar"></div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="left">
+          <span>Hi, I'm Vara Prasad👋</span>
+          <h1>Software Engineer</h1>
+          <p>
+            Experienced in building functional web applications and designing
+            accessible digital products.
+          </p>
+          <div class="footer-socials">
+            
+          <a href="mailto:varap2684@gmail.com"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+            ><i class="fas fa-envelope"></i></a>
+            <a href="https://x.com/Vara_prasad_06?t=HLX2sc3GTp3wwI5l19knDw&s=09" target="_blank" rel="noopener noreferrer" > <i class="fab fa-twitter"></i> </a>
+            <a href="https://github.com/vara-prasad-07" target="_blank" rel="noopener noreferrer" > <i class="fab fa-github"></i> </a>
+            <a href="https://www.linkedin.com/in/vara-prasad-836442292?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" > <i class="fab fa-linkedin"></i> </a>
+            <!-- Other social links -->
+          </div>
+          <a href="#about"
+            >See Why You should Work With Me
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </a>
+        </div>
+        
+      </section>
+      <section class="chat-container" id="desktop-chat">
+    <div class="chat-content desktop-chat-content">
+        <div class="radial-background"></div>
+        <div class="chat-box" id="desktop-chat-box">
+            <div class="msg-main-container" id="desktop-msg-container"></div>
+        </div>
+        
+        <div class="sparkle-icon">✨</div>
+        <h1 class="main-prompt">Ask about me anything</h1>
+        
+        <div class="suggestions">
+            <div style="width: 100%; max-width: 600px;">
+                <p class="suggestion-label">Suggestions on what to ask?</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="suggestion-btn desktop-suggestion">What is your professional experience?</button>
+                    <button class="suggestion-btn desktop-suggestion">Which one of your projects is performing the best?</button>
+                    <button class="suggestion-btn desktop-suggestion">What skills you are best at?</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" class="chat-input" id="desktop-chat-input" placeholder="Let us have a small Chat..." />
+            <button class="send-button" id="desktop-send-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <!-- About Me -->
+    <section class="about" id="about">
+      <div class="about-container">
+        <div class="hidden photo-wrapper">
+          <img
+            loading="lazy"
+            class="photo"
+            src="https://res.cloudinary.com/diryolcmm/image/upload/c_crop,ar_3:4/v1751622491/WhatsApp_Image_2025-06-06_at_12.10.22_66873e16_flqa6e.jpg"
+            alt=""
+          />
+        </div>
+        <div class="background">
+          <h2 class="title">Background</h2>
+          <h4 class="subtitle">A bit About Me</h4>
+          <p>
+            I'm a self-taught web developer and visual designer with experience
+            in designing new features from ideation to production,
+            implementation of wireframes and design flows into high performance
+            software applications.
+          </p>
+          <p>
+            I take into consideration search engine optimization, accessibility
+            and user experience while writing reusable and efficient code.
+          </p>
+          <p>
+            I'm passionate about Open Source Software (OSS) with active
+            contributions to
+            <a
+              href="https://github.com/InternetHealthReport"
+              target="_blank"
+              rel="noopener noreferrer"
+              >IHR</a
+            >,
+            <a
+              href="https://github.com/sugarlabs"
+              target="_blank"
+              rel="noopener noreferrer"
+              >SugarLabs.</a
+            >
+          </p>
+          <p>
+            Currently, I'm Learning about AI/ML, Blockchain and Web3. I am also
+            a student at 
+            <a
+              href="https://www.linkedin.com/school/nxtwavetech/posts/?feedView=all"
+              target="_blank"
+              rel="noopener noreferrer"
+              >NXTWAVE Academy.</a
+            >
+          </p>
+        </div>
+      </div>
+      <section class="experience" id="experience">
+        <h2>Professional Experience</h2>
+        <div class="experience-container">
+          <!-- Experience 1 -->
+          <div class="experience-item">
+            <div class="experience-header">
+              <h3 >Tech Lead Intern</h3>
+              <span> May 2025 – Present</span>
+            </div>
+            <div class="experience-details">
+              <p>
+                <i class="fas fa-map-marker-alt"></i> <span id="remotespan">Remote</span>
+                <a href="https://matrixbrainwave.in.net/>" target="_blank">
+                  <i class="fas fa-external-link-alt"></i> https://viswam.ai/
+                </a>
+              </p>
+              <p  id="interndesp">
+               Leading the development of a Telugu Large Language Model (LLM) as part of a state-backed AI initiative by the
+Telangana Government.
+  
+              </p>
+              <div class="tags">
+                <span>Python</span>
+                <span>NLP</span>
+                <span>Docker</span>
+                <span>GitLab</span>
+                <span>Git/GitHub</span>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Experience 2 -->
+          <div class="experience-item">
+            <div class="experience-header">
+              <h3 id="intertype">Front-End Developer Intern</h3>
+              <span> Jun 2024 – Jul 2024</span>
+            </div>
+            <div class="experience-details">
+              <p>
+                <i class="fas fa-map-marker-alt"></i> <span id="remotespan">Remote</span>
+                <a href="https://matrixbrainwave.in.net/>" target="_blank">
+                  <i class="fas fa-external-link-alt"></i> matrixbrainwave.in.net
+                </a>
+              </p>
+              <p  id="interndesp">
+                Worked as a front-end developer intern at Brainwave Matrix Solutions. Designed and implemented user
+  interfaces using HTML, CSS, and JavaScript for internal tools
+  
+              </p>
+              <div class="tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JS</span>
+                <span>Bootstrap</span>
+                <span>Git/GitHub</span>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Experience 3 -->
+          
+      
+          <!-- Experience 4 -->
+          
+        </div>
+      </section>
+      <div class="technologies">
+        <h4>My Core Tools and Technologies</h4>
+      
+        <!-- Web Development Section -->
+        <div class="skills-section">
+          <h5>Web Development</h5>
+          <div class="skills-grid">
+            <div class="skill">
+              <img src="	https://res.cloudinary.com/diryolcmm/image/upload/v1737188380/Group_12_rrijdc.svg" alt="HTML">
+              <p>HTML</p>
+            </div>
+            <div class="skill">
+              <img src="	https://res.cloudinary.com/diryolcmm/image/upload/v1737189336/Group_13_v8ug2k.svg" alt="CSS">
+              <p>CSS</p>
+            </div>
+            <div class="skill">
+              <img src="	https://res.cloudinary.com/diryolcmm/image/upload/v1737189335/bootstrap_mlzdqx.svg" alt="BootStrap">
+              <p>Bootstrap</p>
+            </div>
+            <div class="skill">
+              <img src="https://cdn.iconscout.com/icon/free/png-256/free-vue-logo-icon-download-in-svg-png-gif-file-formats--company-brand-world-logos-vol-5-pack-icons-282497.png?f=webp&w=256" alt="HTML">
+              <p>Vue.js</p>
+            </div>
+            <div class="skill">
+              <img src="https://res.cloudinary.com/diryolcmm/image/upload/v1745314579/icons8-flask-64_vasubl.png" alt="FlASK">
+              <p>Flask</p>
+            </div>
+            <div class="skill">
+              <img src="https://static-00.iconduck.com/assets.00/database-mysql-icon-1954x2048-08uox8qu.png" alt="MYSQL">
+              <p>MySQL</p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Programming Languages Section -->
+        <div class="skills-section">
+          <h5>Programming Languages</h5>
+          <div class="skills-grid">
+            <div class="skill">
+              <img src="	https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-1024.png" alt="PYTHON"> 
+              <p>Python</p>
+            </div>
+            <div class="skill">
+              <img src="	https://res.cloudinary.com/diryolcmm/image/upload/v1737189335/Group_o1hohd.svg" alt="JS">
+              <p>JavaScript</p>
+            </div>
+            <div class="skill">
+              <img src="https://cdn-icons-png.flaticon.com/512/6132/6132222.png" alt="C++">
+              <p>C++</p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Computer Science Fundamentals Section -->
+        <div class="skills-section">
+          <h5>Computer Science Fundamentals</h5>
+          <div class="skills-grid">
+            <div class="skill">
+              <img src="https://cdn-icons-png.flaticon.com/512/6840/6840567.png" alt="OOPS"/>
+              <p>OOPS</p>
+            </div>
+            <div class="skill">
+              <img src="https://res.cloudinary.com/diryolcmm/image/upload/v1745314933/web-data_16414803_ehbybm.png" alt="DBMS"/>
+              <p>DBMS</p>
+            </div>
+            <div class="skill">
+              <img src="https://res.cloudinary.com/diryolcmm/image/upload/v1745315088/system-integration_lpmpxh.png" alt="OS"/>
+              <p>OS</p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Tools Section -->
+        <div class="skills-section">
+          <h5>Tools</h5>
+          <div class="skills-grid">
+            <div class="skill">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt6DXuvit57V1DmjnlLcwst4O-sTL5D37gIQ&s" alt="OS"/>
+              
+              <p>GitHub</p>
+            </div>
+            <div class="skill">
+              <img src="https://static-00.iconduck.com/assets.00/git-icon-2048x2048-juzdf1l5.png" alt="OS"/>
+              <p>Git</p>
+            </div>
+            <div class="skill">
+              <img src="https://images.icon-icons.com/2407/PNG/512/aws_icon_146074.png" alt="OS"/>
+              <p>AWS</p>
+            </div>
+            <div class="skill">
+              <img src="https://miro.medium.com/v2/resize:fit:1400/1*6XgfDCVn81AYX68Xvd2I-g@2x.png" alt="OS"/>
+              
+              <p>Figma</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Projects -->
+    <section class="project" id="project">
+      <div class="project-container">
+        <div class="text" style="margin: 0px 0px 20px 0px;">
+          <h2 class="title" data-title="My works">Featured Projects</h2>
+          <p>Some Projects I have worked on</p>
+        </div>
+
+        <div class="project-container">
+
+          <div class="projects">
+            <!-- Project 1 -->
+             <div class="project_change">
+               <img src="https://res.cloudinary.com/diryolcmm/image/upload/v1750183310/WEALTH_MAP_1_ozbeg0.png" class="project-image"/>
+               <h1>Wealth Map</h1>
+               <p>WealthMap, a comprehensive financial analytics platform where admins manage companies and employees explore
+investment opportunities</p>
+               <p> <span>#Vue.js</span><span>#CSS3</span> <span>#FastAPI</span> <span>#Postgres SQL</span> <span>#Firebase Auth</span>  </p>
+               <div>
+                 <button> <a href="https://wealthmap.netlify.app/" target="_blank">Live  <i class="fas fa-external-link-alt"></i></a>
+                  </button>
+                 <button> <a href="https://github.com/vara-prasad-07/wealth_map" target="_blank">Source <i class="fab fa-github"></i></a>
+                  </button>
+               </div>
+          </div>
+              
+           <div class="project_change">
+               <img src="https://res.cloudinary.com/diryolcmm/image/upload/v1750515186/AI_Plant_Disease_Detection_i6zmua.png" class="project-image"/>
+               <h1>AI Plant Disease Detection</h1>
+               <p>AI-powered web application to detect plant diseases from leaf images using a CNN model, deployed via Hugging Face for real-time predictions.</p>
+               <p> <span>#HTML5</span><span>#CSS3</span> <span>#JS</span> <span>#FastAPI</span> <span>#Tensor Flow</span> <span>#Firebase Auth</span> <span>#CNN</span>  </p>
+               <div>
+                 <button> <a href="https://testwebm.netlify.app/" target="_blank">Live  <i class="fas fa-external-link-alt"></i></a>
+                  </button>
+                 <button> <a href="https://github.com/vara-prasad-07/AI_plant_disease_detection" target="_blank">Source <i class="fab fa-github"></i></a>
+                  </button>
+               </div>
+          </div>
+           <div class="project_change">
+               <img src="https://res.cloudinary.com/diryolcmm/image/upload/v1750515186/AI_Plant_Disease_Detection_1_hb31km.png" class="project-image"/>
+               <h1>Search Engine</h1>
+               <p>Built a web application to search Wikipedia articles in real time using the MediaWiki API and JavaScript</p>
+               <p> <span>#HTML5</span><span>#CSS3</span> <span>#JS</span> <span>#HTTPS</span> <span>#RestAPI</span>  </p>
+               <div>
+                 <button><a href="https://sevenwiki.ccbp.tech/" target="_blank">Live  <i class="fas fa-external-link-alt"></i> </a>
+                </button>
+                 <button><a href="https://github.com/vara-prasad-07/wikipedia_search_engine" target="_blank">Source <i class="fab fa-github"></i> </a>
+                </button>
+               </div>
+          </div>
+           <div class="project_change">
+               <img src="https://res.cloudinary.com/diryolcmm/image/upload/v1750515186/AI_Plant_Disease_Detection_2_xncjuv.png" class="project-image"/>
+               <h1>Todo List</h1>
+               <p>Built a dynamic ToDo List web app with add, delete, and filter functionalities using JavaScript and local storage for persistent data.</p>
+               <p> <span>#HTML5</span><span>#CSS3</span> <span>#JS</span> <span>#Local Storage</span> </p>
+               <div>
+                 <button><a href="https://todosapplicatio.netlify.app/" target="_blank">Live  <i class="fas fa-external-link-alt"></i> </a>
+                </button>
+                 <button> <a href="https://github.com/vara-prasad-07/todos" target="_blank">Source <i class="fab fa-github"></i></a>   </button>
+               </div>
+          </div>
+           
+            
+
+            <!-- Project 7 -->
+           
+
+            <!-- Project 8 -->
+           
+
+            <!-- Project 9 -->
+            
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <!-- Blog -->
+   
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="form-container">
+        <div class="form-text">
+          <h2 class="title">Get In Touch</h2>
+          <p>
+            Do you have a project and/or want to have a chat? <br />
+            Feel free to send me a message, I will definitely reply.
+          </p>
+        </div>
+
+        <form
+          id="contact-form"
+          name="contact"
+          action="https://formspree.io/f/xwplydaw"
+          method="POST"
+        >
+          <input name="bot-field" style="display: none" />
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" name="name" required />
+
+          <label for="subject">Subject</label>
+          <input type="text" name="subject" id="subject" name="subject" />
+
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" name="email" required />
+
+          <label for="message">Message</label>
+          <textarea
+            name="message"
+            id="message"
+            placeholder="Type your message here..."
+            rows="8"
+            name="message"
+          ></textarea>
+          <button class="contact-btn">SEND MESSAGE</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="copyright">
+        <p>&copy; 2023 Vara Prasad. All rights reserved.</p>
+        <p>Designed and Developed by Vara Prasad</p>
+    </footer>
+
+    <div class="scrollup">
+      <a href="#" id="scroll-btn"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <!-- Floating Chat Icon (visible only on mobile) -->
+<div class="floating-chat-icon" id="openChatBtn">
+  <svg width="36" height="36" fill="currentColor" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="8" fill="#6C63FF"/>
+    <path d="M17 2L7 12h4v8l6-10h-4z" fill="#fff"/>
+  </svg>
+</div>
+
+<!-- Chat Popup Modal -->
+<!-- Mobile Chat Popup -->
+<div class="chat-popup-modal" id="mobile-chat-modal">
+    <div class="chat-popup-content" id="mobile-chat">
+        <span class="close-chat-popup" id="mobile-close-btn">&times;</span>
+        
+        <div class="chat-content mobile-chat-content">
+            <div class="radial-background"></div>
+            <div class="chat-box" id="mobile-chat-box">
+                <div class="msg-main-container" id="mobile-msg-container"></div>
+            </div>
+            
+            <div class="sparkle-icon">✨</div>
+            <h1 class="main-prompt">Ask about me anything</h1>
+            
+            <div class="suggestions">
+                <div style="width: 100%; max-width: 600px;">
+                    <p class="suggestion-label">Suggestions on what to ask?</p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="suggestion-btn mobile-suggestion">What is your professional experience?</button>
+                        <button class="suggestion-btn mobile-suggestion">Which one of your projects is performing the best?</button>
+                        <button class="suggestion-btn mobile-suggestion">What skills you are best at?</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" class="chat-input" id="mobile-chat-input" placeholder="Let us have a small Chat..." />
+                <button class="send-button" id="mobile-send-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="./js/mixitup.min.js"></script>
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>
