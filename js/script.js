@@ -255,9 +255,7 @@ async function handleChatSubmit(e) {
 
         // Scroll to bottom
         chatBox.scrollTop = chatBox.scrollHeight;
-    } else {
-        alert("Please enter a message before asking.");
-    }
+    } 
 }
 
 // Handle Enter key press
