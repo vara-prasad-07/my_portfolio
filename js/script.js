@@ -151,46 +151,11 @@ hiddenElems.forEach((entry) => observer.observe(entry));
 
 // chatbot js
 
-document.querySelectorAll('.suggestion-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-      document.querySelector('.chat-input').value = this.textContent;
-  });
-});
-
 async function loadClient() {
       client = await Client.connect("vara-prasad-07/rag_model_backend");
-      alert("Client loaded successfully!");
+      alert("You chat about vara prasad by asking questions in chatbot input field!");
       return;
     }
-
-
-let getResponseContent = async (inputValue) => {
-    try {
-        let response = await fetch("http://127.0.0.1:8000/ask", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ query: inputValue })
-        });
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        let data = await response.json();
-        // The answer is in data.answer
-        console.log("Answer:", data.answer);
-        return data.answer;
-    } catch (error) {
-        console.error("Error fetching response:", error);
-        return "Sorry, I couldn't process your request.";
-    }
-}
-// Also add scrolling behavior for Enter key press
-document.querySelector('.chat-input').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-      document.querySelector('.send-button').click();
-  }
-});
 // Show chat popup on mobile when floating icon is clicked
 const openChatBtn = document.getElementById('openChatBtn');
 const chatPopupModal = document.getElementById('mobile-chat-modal');
@@ -222,22 +187,39 @@ async function handleChatSubmit(e) {
     
     // Get elements
     const input = document.getElementById(inputId);
-    const inputValue = input?.value?.trim() || '';
-    const chatBox = document.getElementById(chatBoxId);
-    const msgContainer = document.getElementById(containerId);
+    if (!input) {
+        console.error(`Input element with ID '${inputId}' not found`);
+        return;
+    }
+    
+    const inputValue = input.value.trim();
     
     // Check if input is empty before proceeding
     if (!inputValue) {
         alert("Please enter a message before asking.");
         return; // Exit the function if no input
     }
-
+    
+    const chatBox = document.getElementById(chatBoxId);
+    const msgContainer = document.getElementById(containerId);
+    
+    if (!chatBox || !msgContainer) {
+        console.error(`Chat elements not found: chatBox=${chatBoxId}, msgContainer=${containerId}`);
+        return;
+    }
+    
     // Clear input and hide elements
     input.value = '';
     const parent = chatBox.closest('.chat-content');
-    parent.querySelector('.sparkle-icon').style.display = 'none';
-    parent.querySelector('.suggestions').style.display = 'none';
-    parent.querySelector('.main-prompt').style.display = 'none';
+    if (parent) {
+        const sparkleIcon = parent.querySelector('.sparkle-icon');
+        const suggestions = parent.querySelector('.suggestions');
+        const mainPrompt = parent.querySelector('.main-prompt');
+        
+        if (sparkleIcon) sparkleIcon.style.display = 'none';
+        if (suggestions) suggestions.style.display = 'none';
+        if (mainPrompt) mainPrompt.style.display = 'none';
+    }
 
     // Add user message
     let userMsg = document.createElement("div");
@@ -245,23 +227,66 @@ async function handleChatSubmit(e) {
     userMsg.innerHTML = inputValue;
     msgContainer.appendChild(userMsg);
 
+    // Show loading animation
+    let loadingMsg = document.createElement("div");
+    loadingMsg.classList.add("msg_container_response", "loading-container");
+    loadingMsg.innerHTML = `
+        <div class="loading-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    `;
+    msgContainer.appendChild(loadingMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
     // Handle bot response
     try {
         setTimeout(async () => {
             let responsecontent = await client.predict("/predict", [inputValue]);
+            let responseR = responsecontent.data[0];
+            
+            // Remove loading animation
+            loadingMsg.remove();
+            
+            // Create bot response with typing animation
             let botResponse = document.createElement("div");
             botResponse.classList.add("msg_container_response");
-            botResponse.innerHTML = responsecontent.data[0];
             msgContainer.appendChild(botResponse);
+            
+            // Type out the response character by character
+            await typeResponse(botResponse, responseR);
+            
             chatBox.scrollTop = chatBox.scrollHeight;
         }, 1000);
     } catch (error) {
         console.error("Error:", error);
+        // Remove loading animation on error
+        loadingMsg.remove();
         alert("Error fetching response: " + error.message);
     }
 
     // Scroll to bottom
     chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Function to type out response character by character
+async function typeResponse(element, text) {
+    element.innerHTML = '';
+    element.classList.add('typing');
+    
+    for (let i = 0; i < text.length; i++) {
+        element.innerHTML += text[i];
+        
+        // Add a small delay between characters for natural typing effect
+        // Add slight randomness to make it more human-like
+        const baseDelay = 30;
+        const randomDelay = Math.random() * 20; // 0-20ms random variation
+        await new Promise(resolve => setTimeout(resolve, baseDelay + randomDelay));
+    }
+    
+    // Remove typing class after animation completes
+    element.classList.remove('typing');
 }
 
 // Handle Enter key press
@@ -286,15 +311,11 @@ document.querySelectorAll('.suggestion-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         // Find the nearest chat input within the same chat interface
         const chatContent = this.closest('.chat-content');
-        const input = chatContent.querySelector('.chat-input');
-        if (input) {
-            input.value = this.textContent;
+        if (chatContent) {
+            const input = chatContent.querySelector('.chat-input');
+            if (input) {
+                input.value = this.textContent;
+            }
         }
     });
 });
-
-// Remove the old event listeners to avoid conflicts
-// ...existing code...
-// Remove or comment out the old event listener:
-// document.querySelector('.send-button').addEventListener('click', function() {...});
-// document.querySelector('.chat-input').addEventListener('keypress', function(e) {...});

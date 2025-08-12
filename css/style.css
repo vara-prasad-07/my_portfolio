@@ -1147,6 +1147,96 @@ footer {
   overflow-wrap: break-word;
   align-self: flex-start;
 }
+
+/* Loading animation styles */
+.loading-container {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.loading-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--cta-primary);
+  animation: loadingDot 1.4s ease-in-out infinite both;
+  box-shadow: 0 0 8px rgba(108, 99, 255, 0.3);
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+@keyframes loadingDot {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Typing effect styles */
+.msg_container_response.typing {
+  position: relative;
+  overflow: hidden;
+}
+
+.msg_container_response.typing::after {
+  content: '|';
+  animation: blink 1s infinite;
+  font-weight: bold;
+  color: var(--cta-primary);
+  margin-left: 2px;
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Smooth transition for text appearance */
+.msg_container_response {
+  transition: all 0.3s ease-in-out;
+}
+
 .msg-main-container{
   display: flex;
   flex-direction: column;
