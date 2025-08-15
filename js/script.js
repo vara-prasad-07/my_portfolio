@@ -153,9 +153,463 @@ hiddenElems.forEach((entry) => observer.observe(entry));
 
 async function loadClient() {
       client = await Client.connect("vara-prasad-07/rag_model_backend");
-      alert("You chat about vara prasad by asking questions in chatbot input field!");
+      // Replace alert with better UX - guide user to chat application
+      guideUserToChat();
       return;
     }
+
+// Function to guide user to chat application with better UX
+function guideUserToChat() {
+  // Check if we're on mobile or desktop
+  const isMobile = window.innerWidth <= 768;
+  
+  if (isMobile) {
+    // Mobile-specific guidance
+    guideMobileUser();
+  } else {
+    // Desktop-specific guidance
+    guideDesktopUser();
+  }
+  
+  // Show a subtle tooltip or hint for new users
+  showChatHint();
+}
+
+// Function to guide desktop users to chat application
+function guideDesktopUser() {
+  const desktopChat = document.getElementById('desktop-chat');
+  
+  if (desktopChat) {
+    // Add a subtle glow effect to desktop chat
+    desktopChat.style.transition = 'all 0.3s ease';
+    desktopChat.style.boxShadow = '0 0 20px rgba(108, 99, 255, 0.3)';
+    
+    // Add a gentle bounce animation to the sparkle icon
+    const sparkleIcon = desktopChat.querySelector('.sparkle-icon');
+    if (sparkleIcon) {
+      sparkleIcon.style.animation = 'sparkleBounce 2s ease-in-out 3';
+    }
+    
+    // Add a subtle highlight to the main prompt
+    const mainPrompt = desktopChat.querySelector('.main-prompt');
+    if (mainPrompt) {
+      mainPrompt.style.transition = 'all 0.3s ease';
+      mainPrompt.style.color = '#6C63FF';
+      setTimeout(() => {
+        mainPrompt.style.color = 'white';
+      }, 2000);
+    }
+    
+    // Add a subtle focus effect to the chat input
+    const chatInput = desktopChat.querySelector('.chat-input');
+    if (chatInput) {
+      chatInput.style.transition = 'all 0.3s ease';
+      chatInput.style.border = '2px solid rgba(108, 99, 255, 0.5)';
+      chatInput.style.boxShadow = '0 0 10px rgba(108, 99, 255, 0.2)';
+      
+      // Remove the focus effect after animation
+      setTimeout(() => {
+        chatInput.style.border = '';
+        chatInput.style.boxShadow = '';
+      }, 3000);
+    }
+    
+    // Add subtle animation to suggestion buttons
+    const suggestionBtns = desktopChat.querySelectorAll('.suggestion-btn');
+    suggestionBtns.forEach((btn, index) => {
+      setTimeout(() => {
+        btn.style.transition = 'all 0.3s ease';
+        btn.style.transform = 'scale(1.05)';
+        btn.style.backgroundColor = 'rgba(108, 99, 255, 0.3)';
+        
+        // Reset after animation
+        setTimeout(() => {
+          btn.style.transform = '';
+          btn.style.backgroundColor = '';
+        }, 1000);
+      }, 500 + (index * 200)); // Stagger the animations
+    });
+    
+    // Remove the glow effect after animation
+    setTimeout(() => {
+      desktopChat.style.boxShadow = '';
+    }, 3000);
+    
+    // Create desktop background blur effect
+    createDesktopBackgroundBlur();
+  }
+}
+
+// Function to guide mobile users to chat application
+function guideMobileUser() {
+  const mobileChatBtn = document.getElementById('openChatBtn');
+  
+  if (mobileChatBtn) {
+    // Enhanced mobile chat button animation
+    mobileChatBtn.style.animation = 'mobileChatPulse 2s ease-in-out 3, mobileChatGlow 2s ease-in-out 3, mobileChatBorder 2s ease-in-out 3';
+    
+    // Add a stronger glow effect for mobile
+    mobileChatBtn.style.transition = 'all 0.3s ease';
+    mobileChatBtn.style.boxShadow = '0 0 25px rgba(108, 99, 255, 0.6)';
+    mobileChatBtn.style.transform = 'scale(1.2)';
+    
+    // Add a pulsing border effect
+    mobileChatBtn.style.border = '3px solid rgba(108, 99, 255, 0.8)';
+    
+    // Create a background blur effect around the button
+    createMobileBackgroundBlur();
+    
+    // Reset the button after animation
+    setTimeout(() => {
+      mobileChatBtn.style.transform = 'scale(1)';
+      mobileChatBtn.style.boxShadow = '';
+      mobileChatBtn.style.border = '';
+      mobileChatBtn.style.animation = '';
+    }, 3000);
+    
+    // Remove background blur after animation
+    setTimeout(() => {
+      removeMobileBackgroundBlur();
+    }, 3000);
+  } else {
+    // Fallback: if mobile chat button is not found, try to find it again
+    console.log('Mobile chat button not found, attempting to locate...');
+    setTimeout(() => {
+      const retryMobileChatBtn = document.getElementById('openChatBtn');
+      if (retryMobileChatBtn) {
+        console.log('Mobile chat button found on retry');
+        // Apply the same animations
+        retryMobileChatBtn.style.animation = 'mobileChatPulse 2s ease-in-out 3, mobileChatGlow 2s ease-in-out 3, mobileChatBorder 2s ease-in-out 3';
+        retryMobileChatBtn.style.transition = 'all 0.3s ease';
+        retryMobileChatBtn.style.boxShadow = '0 0 25px rgba(108, 99, 255, 0.6)';
+        retryMobileChatBtn.style.transform = 'scale(1.2)';
+        retryMobileChatBtn.style.border = '3px solid rgba(108, 99, 255, 0.8)';
+        
+        createMobileBackgroundBlur();
+        
+        setTimeout(() => {
+          retryMobileChatBtn.style.transform = 'scale(1)';
+          retryMobileChatBtn.style.boxShadow = '';
+          retryMobileChatBtn.style.border = '';
+          retryMobileChatBtn.style.animation = '';
+        }, 3000);
+        
+        setTimeout(() => {
+          removeMobileBackgroundBlur();
+        }, 3000);
+      }
+    }, 500);
+  }
+}
+
+// Function to create desktop background blur effect
+function createDesktopBackgroundBlur() {
+  // Create a blur overlay for the entire page except the chat container
+  const blurOverlay = document.createElement('div');
+  blurOverlay.id = 'desktop-blur-overlay';
+  blurOverlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  `;
+  
+  document.body.appendChild(blurOverlay);
+  
+  // Fade in the blur
+  setTimeout(() => {
+    blurOverlay.style.opacity = '1';
+  }, 100);
+  
+  // Add a spotlight effect around the chat container
+  const chatContainer = document.getElementById('desktop-chat');
+  if (chatContainer) {
+    const rect = chatContainer.getBoundingClientRect();
+    
+    const spotlight = document.createElement('div');
+    spotlight.id = 'desktop-spotlight';
+    spotlight.style.cssText = `
+      position: fixed;
+      top: ${rect.top - 20}px;
+      left: ${rect.left - 20}px;
+      width: ${rect.width + 40}px;
+      height: ${rect.height + 40}px;
+      background: radial-gradient(ellipse, rgba(108, 99, 255, 0.2) 0%, transparent 70%);
+      border-radius: 16px;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    `;
+    
+    document.body.appendChild(spotlight);
+    
+    // Fade in the spotlight
+    setTimeout(() => {
+      spotlight.style.opacity = '1';
+    }, 200);
+    
+    // Remove desktop effects after animation
+    setTimeout(() => {
+      removeDesktopBackgroundBlur();
+    }, 3000);
+  }
+}
+
+// Function to remove desktop background blur
+function removeDesktopBackgroundBlur() {
+  const blurOverlay = document.getElementById('desktop-blur-overlay');
+  const spotlight = document.getElementById('desktop-spotlight');
+  
+  if (blurOverlay) {
+    blurOverlay.style.opacity = '0';
+    setTimeout(() => {
+      if (blurOverlay.parentNode) {
+        blurOverlay.parentNode.removeChild(blurOverlay);
+      }
+    }, 500);
+  }
+  
+  if (spotlight) {
+    spotlight.style.opacity = '0';
+    setTimeout(() => {
+      if (spotlight.parentNode) {
+        spotlight.parentNode.removeChild(spotlight);
+      }
+    }, 500);
+  }
+}
+
+// Function to show a subtle hint about the chat functionality
+function showChatHint() {
+  // Check if we're on mobile
+  const isMobile = window.innerWidth <= 768;
+  
+  // Only show hint on mobile
+  if (!isMobile) {
+    return;
+  }
+  
+  // Create a subtle hint element
+  const hint = document.createElement('div');
+  hint.className = 'chat-hint';
+  hint.innerHTML = `
+    <div class="hint-content">
+      <span class="hint-icon">💬</span>
+      <span class="hint-text">Tap the blue chat icon below to start chatting!</span>
+      <span class="hint-arrow">⬇️</span>
+    </div>
+  `;
+  
+  // Add styles with mobile-specific positioning
+  const hintStyles = {
+    position: 'fixed',
+    bottom: '160px', // Position above the floating chat button
+    right: '20px',
+    left: '20px',
+    background: 'rgba(108, 99, 255, 0.95)',
+    color: 'white',
+    padding: '16px 20px',
+    borderRadius: '12px',
+    fontSize: '16px',
+    zIndex: '10000',
+    opacity: '0',
+    transform: 'translateY(50px)',
+    transition: 'all 0.5s ease',
+    boxShadow: '0 8px 25px rgba(0, 0, 0, 0.3)',
+    textAlign: 'center',
+    fontWeight: '500',
+    border: '2px solid rgba(255, 255, 255, 0.2)',
+    maxWidth: 'none'
+  };
+  
+  // Apply styles
+  Object.assign(hint.style, hintStyles);
+  
+  // Add to body
+  document.body.appendChild(hint);
+  
+  // Animate in
+  setTimeout(() => {
+    hint.style.opacity = '1';
+    hint.style.transform = 'translateY(0)';
+  }, 100);
+  
+  // Auto-hide after 6 seconds for mobile (longer visibility)
+  setTimeout(() => {
+    hint.style.opacity = '0';
+    hint.style.transform = 'translateY(50px)';
+    setTimeout(() => {
+      if (hint.parentNode) {
+        hint.parentNode.removeChild(hint);
+      }
+    }, 500);
+  }, 6000);
+  
+  // Add click to dismiss
+  hint.addEventListener('click', () => {
+    hint.style.opacity = '0';
+    hint.style.transform = 'translateY(50px)';
+    setTimeout(() => {
+      if (hint.parentNode) {
+        hint.parentNode.removeChild(hint);
+      }
+    }, 500);
+  });
+  
+  // Add a subtle bounce animation to the hint
+  setTimeout(() => {
+    hint.style.transform = 'translateY(0) scale(1.02)';
+    setTimeout(() => {
+      hint.style.transform = 'translateY(0) scale(1)';
+    }, 200);
+  }, 300);
+}
+
+// Function to create background blur effect for mobile
+function createMobileBackgroundBlur() {
+  // Create a blur overlay around the chat button
+  const blurOverlay = document.createElement('div');
+  blurOverlay.id = 'mobile-blur-overlay';
+  blurOverlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  `;
+  
+  document.body.appendChild(blurOverlay);
+  
+  // Fade in the blur
+  setTimeout(() => {
+    blurOverlay.style.opacity = '1';
+  }, 100);
+  
+  // Add a spotlight effect around the chat button
+  const spotlight = document.createElement('div');
+  spotlight.id = 'mobile-spotlight';
+  spotlight.style.cssText = `
+    position: fixed;
+    bottom: 86px;
+    right: 30px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  `;
+  
+  document.body.appendChild(spotlight);
+  
+  // Fade in the spotlight
+  setTimeout(() => {
+    spotlight.style.opacity = '1';
+  }, 200);
+  
+  // Add a pointing arrow BELOW the chat button (pointing up to it)
+  const arrow = document.createElement('div');
+  arrow.id = 'mobile-pointing-arrow';
+  arrow.innerHTML = '👆';
+  arrow.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-size: 24px;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: arrowBounce 1s ease-in-out infinite;
+  `;
+  
+  document.body.appendChild(arrow);
+  
+  // Fade in the arrow
+  setTimeout(() => {
+    arrow.style.opacity = '1';
+  }, 300);
+  
+  // Add a connecting line between hint and chat button
+  const connectingLine = document.createElement('div');
+  connectingLine.id = 'mobile-connecting-line';
+  connectingLine.style.cssText = `
+    position: fixed;
+    bottom: 140px;
+    right: 54px;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to top, rgba(108, 99, 255, 0.8), transparent);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  `;
+  
+  document.body.appendChild(connectingLine);
+  
+  // Fade in the connecting line
+  setTimeout(() => {
+    connectingLine.style.opacity = '1';
+  }, 400);
+}
+
+// Function to remove mobile background blur
+function removeMobileBackgroundBlur() {
+  const blurOverlay = document.getElementById('mobile-blur-overlay');
+  const spotlight = document.getElementById('mobile-spotlight');
+  const arrow = document.getElementById('mobile-pointing-arrow');
+  const connectingLine = document.getElementById('mobile-connecting-line');
+  
+  if (blurOverlay) {
+    blurOverlay.style.opacity = '0';
+    setTimeout(() => {
+      if (blurOverlay.parentNode) {
+        blurOverlay.parentNode.removeChild(blurOverlay);
+      }
+    }, 500);
+  }
+  
+  if (spotlight) {
+    spotlight.style.opacity = '0';
+    setTimeout(() => {
+      if (spotlight.parentNode) {
+        spotlight.parentNode.removeChild(spotlight);
+      }
+    }, 500);
+  }
+  
+  if (arrow) {
+    arrow.style.opacity = '0';
+    setTimeout(() => {
+      if (arrow.parentNode) {
+        arrow.parentNode.removeChild(arrow);
+      }
+    }, 500);
+  }
+
+  if (connectingLine) {
+    connectingLine.style.opacity = '0';
+    setTimeout(() => {
+      if (connectingLine.parentNode) {
+        connectingLine.parentNode.removeChild(connectingLine);
+      }
+    }, 500);
+  }
+}
+
 // Show chat popup on mobile when floating icon is clicked
 const openChatBtn = document.getElementById('openChatBtn');
 const chatPopupModal = document.getElementById('mobile-chat-modal');
@@ -318,4 +772,32 @@ document.querySelectorAll('.suggestion-btn').forEach(btn => {
             }
         }
     });
+});
+
+// Add window resize event listener to handle screen size changes
+window.addEventListener('resize', () => {
+  // Remove any existing guidance elements when screen size changes
+  const existingElements = [
+    'mobile-blur-overlay',
+    'mobile-spotlight', 
+    'mobile-pointing-arrow',
+    'mobile-connecting-line',
+    'desktop-blur-overlay',
+    'desktop-spotlight'
+  ];
+  
+  existingElements.forEach(id => {
+    const element = document.getElementById(id);
+    if (element && element.parentNode) {
+      element.parentNode.removeChild(element);
+    }
+  });
+  
+  // Remove any existing chat hints
+  const existingHints = document.querySelectorAll('.chat-hint');
+  existingHints.forEach(hint => {
+    if (hint.parentNode) {
+      hint.parentNode.removeChild(hint);
+    }
+  });
 });

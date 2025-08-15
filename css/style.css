@@ -960,6 +960,8 @@ footer {
   flex-direction: column;
   position: relative;
   margin-right: 2rem;
+  transition: all 0.3s ease;
+  z-index: 10001; /* Ensure it appears above blur overlay */
 }
 
 .chat-content {
@@ -1281,10 +1283,27 @@ footer {
   box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   cursor: pointer;
   padding: 6px;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
 }
+
 .floating-chat-icon:hover {
   background: #5548c8;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.floating-chat-icon svg {
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s ease;
+}
+
+.floating-chat-icon:hover svg {
+  transform: scale(1.1);
 }
 
 /* Chat Popup Modal */
@@ -1342,4 +1361,100 @@ footer {
     justify-content: center;
   }
 }
+
+/* Chat Guide Animations */
+@keyframes sparkleBounce {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) rotate(15deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(-10deg);
+  }
+  75% {
+    transform: scale(1.15) rotate(5deg);
+  }
+}
+
+@keyframes mobileChatPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes mobileChatGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(108, 99, 255, 0.8), 0 0 50px rgba(108, 99, 255, 0.4);
+  }
+}
+
+@keyframes mobileChatBorder {
+  0%, 100% {
+    border-color: rgba(108, 99, 255, 0.8);
+  }
+  50% {
+    border-color: rgba(108, 99, 255, 1);
+  }
+}
+
+@keyframes arrowBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Chat Hint Styles */
+.chat-hint {
+  cursor: pointer;
+  user-select: none;
+}
+
+.chat-hint .hint-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-hint .hint-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.chat-hint .hint-text {
+  line-height: 1.4;
+}
+
+.chat-hint .hint-arrow {
+  font-size: 18px;
+  margin-left: 8px;
+  animation: arrowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+
 
