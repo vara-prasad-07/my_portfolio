@@ -402,7 +402,7 @@ function showChatHint() {
   hint.innerHTML = `
     <div class="hint-content">
       <span class="hint-icon">💬</span>
-      <span class="hint-text">Tap the blue chat icon below to start chatting!</span>
+      <span class="hint-text">Hey!, let's talk.Click below to start chatting</span>
       <span class="hint-arrow">⬇️</span>
     </div>
   `;
@@ -801,3 +801,4 @@ window.addEventListener('resize', () => {
     }
   });
 });
+
